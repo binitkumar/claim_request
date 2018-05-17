@@ -1,0 +1,35 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @claim.user_id
+%p
+  %b Damage room overview 1
+  %br/
+  = image_tag( render_image_claim_path( @claim, image_name: "damage_room_overview_1") ) 
+%p
+  %b Details of damage 1
+  %br/
+  = image_tag( render_image_claim_path( @claim, image_name: "details_of_damage_1") ) 
+%p
+  %b Damage room overview 2
+  %br/
+  = image_tag( render_image_claim_path( @claim, image_name: "damage_room_overview_2") ) 
+%p
+  %b Details of damage 2
+  %br/
+  = image_tag( render_image_claim_path( @claim, image_name: "details_of_damage_2") ) 
+%p
+  %b Additional Images
+  .row
+    - @claim.photos.each do |photo|
+      .col-4
+        = image_tag( photo_path(photo) )
+
+%p
+  %b Terms and conditions:
+  = @claim.terms_and_conditions
+
+= link_to 'Edit', edit_claim_path(@claim)
+\|
+= link_to 'Back', claims_path

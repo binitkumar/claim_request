@@ -1,0 +1,30 @@
+%h1 Listing claims
+
+%table.table.table-bordered
+  %thead
+    %tr
+      %th User
+      %th Photo 
+      %th Damage room overview 1
+      %th Details of damage 1
+      %th Damage room overview 2
+      %th Details of damage 2
+      %th
+      %th
+      %th
+
+  %tbody
+    - @claims.each do |claim|
+      %tr
+        %td= claim.user_id
+        %td= image_tag( render_image_claim_path( claim, image_name: "damage_room_overview_1") , width: 100, height: 100) 
+        %td= image_tag( render_image_claim_path( claim, image_name: "details_of_damage_1") , width: 100, height: 100) 
+        %td= image_tag( render_image_claim_path( claim, image_name: "damage_room_overview_2") , width: 100, height: 100) 
+        %td= image_tag( render_image_claim_path( claim, image_name: "details_of_damage_2") , width: 100, height: 100) 
+        %td= link_to 'Show', claim
+        %td= link_to 'Edit', edit_claim_path(claim)
+        %td= link_to 'Destroy', claim, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Claim', new_claim_path

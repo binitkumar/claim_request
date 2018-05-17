@@ -41,3 +41,5 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'rubocop'
 end
+gem 'simple_form'
+gem 'nested_form'

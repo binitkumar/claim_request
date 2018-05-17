@@ -13,6 +13,27 @@
 //= require jquery3
 //= require popper
 //= require rails-ujs
-//= require turbolinks
+//= require jquery_nested_form
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function(){
+  $(":file").filestyle({input: false});
+  $(":file").change(function(e){
+    $(this).parent().find(".group-span-filestyle label").css("background", "gray");
+    fileName = e.target.files[0].name;
+    $(this).parent().find(".group-span-filestyle label span").html(fileName);
+  });
+
+  $(document).on('nested:fieldAdded', function(event){
+    field = event.field;
+    field.find(":file").filestyle({input: false});
+
+    $(field).change(function(e){
+      $(this).find(".group-span-filestyle label").css("background", "gray");
+      fileName = e.target.files[0].name;
+      $(this).find(".group-span-filestyle label span").html(fileName);
+    });
+  })
+  $("a.add_nested_fields").click();
+})

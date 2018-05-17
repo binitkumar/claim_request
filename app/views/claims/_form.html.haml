@@ -1,0 +1,28 @@
+-# frozen_string_literal: true
+= simple_nested_form_for(@claim) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  %p
+    = f.label "Claim ID: #{@generated_claim_id}"
+  %p
+    = f.label "User: #{current_user.name}"
+    
+  .form-inputs
+    .row
+      .col-6
+        = f.input :damage_room_overview_1, as: :file, input_html: {"class" => 'image_file_field', "data-input" => false}
+      .col-6
+        = f.input :damage_room_overview_2, as: :file, input_html: {"class" => 'image_file_field', "data-input" => false}
+    .row
+      .col-6
+        = f.input :details_of_damage_1, as: :file, input_html: {"class" => 'image_file_field', "data-input" => false}
+      .col-6
+        = f.input :details_of_damage_2, as: :file, input_html: {"class" => 'image_file_field', "data-input" => false}
+    = f.simple_fields_for :photos do |p|
+      = p.input :content, as: :file, input_html: {"class" => 'image_file_field', "data-input" => false}, label: "Additional files/photos"
+    = f.link_to_add "Additional photos", :photos, class: 'btn btn-primary'
+    = f.input :terms_and_conditions
+
+  .form-actions
+    = f.button :submit, class: 'btn btn-primary'

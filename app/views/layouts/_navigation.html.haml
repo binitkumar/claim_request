@@ -1,10 +1,17 @@
--# navigation styled for Bootstrap 3.0
-.container
-  %nav.navbar.navbar-dark.bg-inverse
-    %ul.nav.navbar-nav.clearfix
-      %li.nav-item
-        %button.navbar-toggler.hidden-sm-up.nav-link{"aria-controls" => "exCollapsingNavbar2", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#exCollapsingNavbar2", "data-toggle" => "collapse", :type => "button"}
-          \ &#9776;
-    #exCollapsingNavbar2.collapse.navbar-toggleable-xs
-      = link_to "Rails bootstrap", root_path, class: 'navbar-brand'
-      %ul.nav.navbar-nav= render 'layouts/navigation_links'
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  %ul.nav.navbar-nav.mx-auto
+    %li.nav-item
+      %p.text-right
+        - if current_user
+          = link_to "Sign Out", user_session_path, method: :delete
+        - else
+          = link_to "Sign In", new_user_session_path
+      %p.text-center
+        EKV CLAIM PHOTO CAPTURE
+        %hr/
+      %p.text-center
+        = image_tag("LOGO.png", width: 50, height: 50)
+        ENDEMA KEIJZERS
+      %p.text-center
+        A fast and easy way to capture your claim photos and documents! 
+
